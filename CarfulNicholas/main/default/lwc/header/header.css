@@ -1,0 +1,54 @@
+a {
+    text-decoration: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    min-width: 130px;
+    width: 100%;
+    display: block;
+    background-color: rgb(87, 87, 87);
+    border-style: none;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    line-height: 50px;
+}
+
+img {
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+    background-color: rgb(114, 114, 114);
+}
+
+.mainContainer {
+    background-color: rgb(87, 87, 87);
+    display: flex;
+}
+
+.logoAndName {
+    display: flex;
+    padding-right: 50px;
+}
+
+.logoAndName:hover {
+    cursor: pointer;
+}
+
+.name {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 50px;
+    font-weight: bold;
+    text-align: center;
+    color: black;
+}

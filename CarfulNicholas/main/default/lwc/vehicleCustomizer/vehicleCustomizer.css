@@ -1,0 +1,68 @@
+.mainContainer {
+    display: flex;
+    height: 600px;
+}
+
+.sidebar {
+    background-color: rgb(87, 87, 87);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+    width: 270px;
+    position: relative;
+}
+
+.vehicleAndChoicesContainer {
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarItem {
+    margin:10px;
+}
+
+.sidebarButton {
+    padding: 10px;
+    border: 0px;
+    background-color: rgb(87, 87, 87);
+}
+
+.sidebarButton:hover {
+    background-color: rgb(128, 128, 128);
+}
+
+.makeSelectContainer {
+}
+
+.modelSelectContainer {
+}
+
+.choicesBottomBar {
+    background-color: rgb(128, 128, 128);
+}
+
+.makeSelect {
+    position: absolute;
+    right: 5px;
+}
+
+.modelSelect {
+    position: absolute;
+    right: 5px;
+}
+
+.vehicleRenderContainer {
+    flex-grow: 3;
+}
+
+.choicesBottomBarHeader {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.choiceNodesContainer {
+    margin: 5px;
+}

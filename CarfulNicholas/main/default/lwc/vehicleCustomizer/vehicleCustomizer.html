@@ -1,0 +1,40 @@
+<template>
+    <div class='mainContainer'>
+        <div class='sidebar'>
+            <div class='makeSelectContainer sidebarItem'>
+                <label><b>Make: </b></label>
+                <select name='Makes' class='makeSelect' onchange={updateModels}>
+                    <option value='' disabled selected>Select Vehicle Make</option>
+                    <template for:each={makeList} for:item="make">
+                        <option key={make}>{make}</option>
+                    </template>
+                </select>
+            </div>
+            <div class='modelSelectContainer sidebarItem'>
+                <label><b>Model: </b></label>
+                <select name='Models' class='modelSelect' disabled>
+                    <option value='' disabled selected>Select Vehicle Model</option>
+                    <template if:true={makeSelected}>
+                        <template for:each={currentModelList} for:item="model">
+                            <option key={model}>{model}</option>
+                        </template>
+                    </template>
+                </select>
+            </div>
+            <button class='sidebarButton'><b>Customizations</b></button>
+            <button class='sidebarButton'><b>Accessories</b></button>
+            <p class='sidebarItem'><b>Subtotal: </b></p>
+        </div>
+        <div class='vehicleAndChoicesContainer'>
+            <div class='vehicleRenderContainer'>
+                <img src={vehicleImgUrl} class='vehicleImg'>
+            </div>
+            <div class='choicesBottomBar'>
+                <h1 class='choicesBottomBarHeader'><b>Options: </b></h1>
+                <div class='choiceNodesContainer'>
+                    <c-choice-node></c-choice-node>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
