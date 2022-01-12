@@ -39,7 +39,7 @@
             </div>
             <div class='yearSelectContainer sidebarItem'>
                 <label><b>Year: </b></label>
-                <select name='Years' class='yearSelect' disabled onchange={closeAlert}>
+                <select name='Years' class='yearSelect' disabled onchange={yearSelected}>
                     <option value='' disabled selected>Select Vehicle Year</option>
                     <template if:true={modelSelected}>
                         <template for:each={currentYearList} for:item="year">
@@ -49,10 +49,10 @@
                 </select>
             </div>
             <button class='sidebarButton' onclick={updateOptionBarColors}><b>Colors</b></button>
-            <button class='sidebarButton'><b>Customizations</b></button>
-            <button class='sidebarButton'><b>Accessories</b></button>
+            <button class='sidebarButton' onclick={updateOptionBarCustomizations}><b>Customizations</b></button>
+            <button class='sidebarButton' onclick={updateOptionBarAccessories}><b>Accessories</b></button>
             <p class='sidebarItem'><b>Subtotal: </b></p>
-            <button class='sidebarButton nextButton'><b>Next</b></button>
+            <button class='sidebarButton nextButton' onclick={submitOrder}><b>Next</b></button>
         </div>
         <div class='vehicleAndChoicesContainer'>
             <img src={vehicleImgUrl} class='vehicleImg'>
@@ -60,7 +60,9 @@
                 <div class='choicesBottomBar'>
                     <h1 class='choicesBottomBarHeader'><b>Options: </b></h1>
                     <div class='choiceNodesContainer'>
-                        <c-choice-node></c-choice-node>
+                        <template for:each={currentOptionsList} for:item='choice'>
+                            <c-choice-node key={choice.Name} choice-name={choice.Name} choice-price={choice.Price} selected-bool={choice.Selected} record-id={choice.RecordId}></c-choice-node>
+                        </template>
                     </div>
                 </div>
             </template>

@@ -1,3 +1,7 @@
+c-choice-node {
+    margin: 5px;
+}
+
 .mainContainer {
     display: flex;
     height: 800px;
@@ -14,6 +18,7 @@
     height: auto;
     width: 270px;
     position: relative;
+    min-width: 245px;
 }
 
 .vehicleAndChoicesContainer {
@@ -50,6 +55,7 @@
     background-color: rgb(27, 27, 27);
 }
 
+
 .choicesBottomBar {
     background: rgb(121,121,121);
     background: linear-gradient(0deg, rgba(121,121,121,1) 0%, rgba(255,255,255,1) 73%, rgba(121,121,121,1) 100%);
@@ -77,6 +83,12 @@
 
 .choiceNodesContainer {
     margin: 5px;
+    display: flex;
+    overflow-x: scroll;
+}
+
+.choiceNodesContainer::-webkit-scrollbar {
+    /* style options bar scrollbar here */
 }
 
 .alertText {

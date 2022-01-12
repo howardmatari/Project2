@@ -8,6 +8,8 @@ export default class ChoiceNode extends LightningElement {
     choiceName = 'defaultName';
     @api
     choicePrice = '+ $200';
+    @api
+    recordId ='';
 
     @api
     selectedBool = false;
