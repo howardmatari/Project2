@@ -8,4 +8,18 @@ export default class ChoiceNode extends LightningElement {
     choiceName = 'defaultName';
     @api
     choicePrice = '+ $200';
+
+    @api
+    selectedBool = false;
+
+    renderedCallback() {
+        if (this.selectedBool) {
+            this.template.querySelector('.container').classList.add('selected');
+        }
+    }
+
+    nodeClicked() {
+        this.template.querySelector('.container').classList.toggle('selected');
+        this.selectedBool = !this.selectedBool;
+    }
 }

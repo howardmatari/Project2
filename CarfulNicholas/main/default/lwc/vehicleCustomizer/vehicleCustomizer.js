@@ -6,6 +6,8 @@ export default class VehicleCustomizer extends LightningElement {
     vehicleImgUrl = HYUNDAIELANTRA;
     makeSelected = false;
     modelSelected = false;
+    optionBarVisible = false;
+    showAlert = false;
 
     @api
     makeMap = {
@@ -118,5 +120,24 @@ export default class VehicleCustomizer extends LightningElement {
             this.modelSelected = false;
         }
     }
-    
+
+    closeAlert() {
+        this.showAlert = false;
+    }
+
+    updateOptionBarColors() {
+        this.alertCheck();
+        if (this.showAlert) {
+            return;
+        }
+        this.optionBarVisible = !this.optionBarVisible;
+    }
+
+    alertCheck() {
+        if (this.makeSelected && this.modelSelected && this.template.querySelector('.yearSelect').value != '') {
+            this.showAlert = false;
+        } else {
+            this.showAlert = true;
+        }
+    }
 }

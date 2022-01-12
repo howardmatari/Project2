@@ -1,17 +1,6 @@
-c-choice-node {
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-c-choice-node:hover {
-    border-color: orange;
-}
-
 .mainContainer {
     display: flex;
-    min-height: 600px;
+    height: 800px;
 }
 
 .sidebar {
@@ -31,6 +20,8 @@ c-choice-node:hover {
     flex-grow: 3;
     display: flex;
     flex-direction: column;
+    height: 800px;
+    overflow: auto;
 }
 
 .sidebarItem {
@@ -39,24 +30,24 @@ c-choice-node:hover {
 
 .sidebarButton {
     padding: 20px;
-    border: 0px;
+    border-width: 0px;
     background-color: rgb(110, 110, 110);
 }
 
-.sidebarButtonNext {
-    padding: 20px;
+.sidebarButton:hover {
+    background-color: rgb(87, 87, 87);
+}
+
+.nextButton {
     border-width: 2px;
     border-color: rgb(27, 27, 27);
     background-color: rgb(27, 27, 27);
     color: rgb(201, 201, 201);
 }
 
-.sidebarButtonNext:hover {
+.nextButton:hover {
     border-color: rgb(201, 201, 201);
-}
-
-.sidebarButton:hover {
-    background-color: rgb(87, 87, 87);
+    background-color: rgb(27, 27, 27);
 }
 
 .choicesBottomBar {
@@ -70,18 +61,12 @@ c-choice-node:hover {
     width: 180px;
 }
 
-.vehicleRenderContainer {
-    flex-grow: 3;
-    max-height: 600px;
-    width: auto;
-}
-
 .vehicleImg {
-    max-height: inherit;
-    max-width: auto;
+    min-height: 600;
     margin-left: auto;
     margin-right: auto;
     display: block;
+    overflow: auto;
 }
 
 .choicesBottomBarHeader {
@@ -92,4 +77,12 @@ c-choice-node:hover {
 
 .choiceNodesContainer {
     margin: 5px;
+}
+
+.alertText {
+    font-size: small;
+}
+
+.buttonAlert {
+    margin-bottom: 5px;
 }

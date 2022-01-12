@@ -2,6 +2,22 @@
     <div class='mainContainer'>
         <div class='sidebar'>
             <div class='makeSelectContainer sidebarItem'>
+                <template if:true={showAlert}>
+                    <div class="slds-notify slds-notify_alert buttonAlert" role="alert">
+                        <span class="slds-assistive-text">info</span>
+                        <h2 class='alertText'>Make, model, and year not selected.
+                        </h2>
+                        <div class="slds-notify__close">
+                            <button class="slds-button slds-button_icon slds-button_icon-small slds-button_icon-inverse"
+                                title="Close" onclick={closeAlert}>
+                                <svg class="slds-button__icon" aria-hidden="true">
+                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                                </svg>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                        </div>
+                    </div>
+                </template>
                 <label><b>Make: </b></label>
                 <select name='Makes' class='makeSelect' onchange={updateModels}>
                     <option value='' disabled selected>Select Vehicle Make</option>
@@ -23,7 +39,7 @@
             </div>
             <div class='yearSelectContainer sidebarItem'>
                 <label><b>Year: </b></label>
-                <select name='Years' class='yearSelect' disabled>
+                <select name='Years' class='yearSelect' disabled onchange={closeAlert}>
                     <option value='' disabled selected>Select Vehicle Year</option>
                     <template if:true={modelSelected}>
                         <template for:each={currentYearList} for:item="year">
@@ -32,22 +48,22 @@
                     </template>
                 </select>
             </div>
-            <button class='sidebarButton'><b>Colors</b></button>
+            <button class='sidebarButton' onclick={updateOptionBarColors}><b>Colors</b></button>
             <button class='sidebarButton'><b>Customizations</b></button>
             <button class='sidebarButton'><b>Accessories</b></button>
             <p class='sidebarItem'><b>Subtotal: </b></p>
-            <button class='sidebarButtonNext'><b>Next</b></button>
+            <button class='sidebarButton nextButton'><b>Next</b></button>
         </div>
         <div class='vehicleAndChoicesContainer'>
-            <div class='vehicleRenderContainer'>
-                <img src={vehicleImgUrl} class='vehicleImg'>
-            </div>
-            <div class='choicesBottomBar'>
-                <h1 class='choicesBottomBarHeader'><b>Options: </b></h1>
-                <div class='choiceNodesContainer'>
-                    <c-choice-node></c-choice-node>
+            <img src={vehicleImgUrl} class='vehicleImg'>
+            <template if:true={optionBarVisible}>
+                <div class='choicesBottomBar'>
+                    <h1 class='choicesBottomBarHeader'><b>Options: </b></h1>
+                    <div class='choiceNodesContainer'>
+                        <c-choice-node></c-choice-node>
+                    </div>
                 </div>
-            </div>
+            </template>
         </div>
     </div>
 </template>

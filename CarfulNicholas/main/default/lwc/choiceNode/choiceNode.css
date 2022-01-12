@@ -13,8 +13,17 @@ p {
 .container {
     height: 160px;
     width: 160px;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 5px;
+    cursor: pointer;
+    border-color: black;
 }
 
 .container:hover{
-    border-color: orange;
+    border-style: dashed;
+}
+
+.selected {
+    border-color: rgb(2, 163, 163);
 }
