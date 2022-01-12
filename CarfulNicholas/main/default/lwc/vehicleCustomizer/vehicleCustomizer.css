@@ -1,10 +1,13 @@
 .mainContainer {
     display: flex;
-    height: 600px;
+    min-height: 600px;
 }
 
 .sidebar {
-    background-color: rgb(87, 87, 87);
+    background-color: rgb(110, 110, 110);
+    border-style: outset;
+    border-color: rgba(66,66,66,1);
+    border-width: 3px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -26,11 +29,11 @@
 .sidebarButton {
     padding: 10px;
     border: 0px;
-    background-color: rgb(87, 87, 87);
+    background-color: rgb(110, 110, 110);
 }
 
 .sidebarButton:hover {
-    background-color: rgb(128, 128, 128);
+    background-color: rgb(87, 87, 87);
 }
 
 .makeSelectContainer {
@@ -40,7 +43,8 @@
 }
 
 .choicesBottomBar {
-    background-color: rgb(128, 128, 128);
+    background: rgb(121,121,121);
+    background: linear-gradient(0deg, rgba(121,121,121,1) 0%, rgba(255,255,255,1) 73%, rgba(121,121,121,1) 100%);
 }
 
 .makeSelect {
@@ -55,6 +59,16 @@
 
 .vehicleRenderContainer {
     flex-grow: 3;
+    max-height: 600px;
+    width: auto;
+}
+
+.vehicleImg {
+    max-height: inherit;
+    max-width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .choicesBottomBarHeader {
