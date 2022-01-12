@@ -1,3 +1,14 @@
+c-choice-node {
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+c-choice-node:hover {
+    border-color: orange;
+}
+
 .mainContainer {
     display: flex;
     min-height: 600px;
@@ -27,19 +38,25 @@
 }
 
 .sidebarButton {
-    padding: 10px;
+    padding: 20px;
     border: 0px;
     background-color: rgb(110, 110, 110);
 }
 
+.sidebarButtonNext {
+    padding: 20px;
+    border-width: 2px;
+    border-color: rgb(27, 27, 27);
+    background-color: rgb(27, 27, 27);
+    color: rgb(201, 201, 201);
+}
+
+.sidebarButtonNext:hover {
+    border-color: rgb(201, 201, 201);
+}
+
 .sidebarButton:hover {
     background-color: rgb(87, 87, 87);
-}
-
-.makeSelectContainer {
-}
-
-.modelSelectContainer {
 }
 
 .choicesBottomBar {
@@ -47,14 +64,10 @@
     background: linear-gradient(0deg, rgba(121,121,121,1) 0%, rgba(255,255,255,1) 73%, rgba(121,121,121,1) 100%);
 }
 
-.makeSelect {
+.makeSelect, .modelSelect, .yearSelect {
     position: absolute;
     right: 5px;
-}
-
-.modelSelect {
-    position: absolute;
-    right: 5px;
+    width: 180px;
 }
 
 .vehicleRenderContainer {

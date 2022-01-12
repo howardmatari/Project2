@@ -12,7 +12,7 @@
             </div>
             <div class='modelSelectContainer sidebarItem'>
                 <label><b>Model: </b></label>
-                <select name='Models' class='modelSelect' disabled>
+                <select name='Models' class='modelSelect' disabled onchange={updateYears}>
                     <option value='' disabled selected>Select Vehicle Model</option>
                     <template if:true={makeSelected}>
                         <template for:each={currentModelList} for:item="model">
@@ -21,9 +21,22 @@
                     </template>
                 </select>
             </div>
+            <div class='yearSelectContainer sidebarItem'>
+                <label><b>Year: </b></label>
+                <select name='Years' class='yearSelect' disabled>
+                    <option value='' disabled selected>Select Vehicle Year</option>
+                    <template if:true={modelSelected}>
+                        <template for:each={currentYearList} for:item="year">
+                            <option key={year}>{year}</option>
+                        </template>
+                    </template>
+                </select>
+            </div>
+            <button class='sidebarButton'><b>Colors</b></button>
             <button class='sidebarButton'><b>Customizations</b></button>
             <button class='sidebarButton'><b>Accessories</b></button>
             <p class='sidebarItem'><b>Subtotal: </b></p>
+            <button class='sidebarButtonNext'><b>Next</b></button>
         </div>
         <div class='vehicleAndChoicesContainer'>
             <div class='vehicleRenderContainer'>

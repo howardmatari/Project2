@@ -5,18 +5,10 @@ export default class VehicleCustomizer extends LightningElement {
     //TODO implement sliding up footer when customizations/accessories buttons are clicked to display possible options
     vehicleImgUrl = HYUNDAIELANTRA;
     makeSelected = false;
-    
-    @api
-    makeMap = {
-        Hyundai: ['Elantra', 'Sonata'],
-        Honda: ['honda1', 'honda2'],
-        Ford: ['ford1'],
-        Mazda: ['mazda1', 'mazda2'],
-        BMW: ['bmw1', 'bmw2', 'bmw3']
-    }
+    modelSelected = false;
 
     @api
-    makeMap2 = {
+    makeMap = {
         Hyundai: {
             Elantra: {
                 2020: {
@@ -61,24 +53,69 @@ export default class VehicleCustomizer extends LightningElement {
                         }
                     }
                 }
+            },
+            Sonata: {
+                2020: {
+                    Accessories: {
+                        Acc1: {
+                            Name: 'acc1',
+                            ImgUrl: '',
+                            Price: '+ $200'
+                        },
+                        Acc2: {
+                            Name: 'acc2',
+                            ImgUrl: '',
+                            Price: '+ $200'
+                        },
+                        Acc3: {
+                            Name: 'acc3',
+                            ImgUrl: '',
+                            Price: '+ $200'
+                        }
+                    },
+                    Customizations: {
+                        Cust1: {
+                            Name: 'acc1',
+                            ImgUrl: '',
+                            Price: '+ $200'
+                        }
+                    }
+                }
             }
         }
     }
 
     @track
-    currentModelList = [];
+    currentModelList;
     
     get makeList() {
         return Object.getOwnPropertyNames(this.makeMap);
     }
 
     updateModels() {
-        if (this.template.querySelector('.makeSelect').value != '') {
+        let makeSelectVal = this.template.querySelector('.makeSelect').value;
+        let modelSelect = this.template.querySelector('.modelSelect');
+        if (makeSelectVal != '') {
             this.makeSelected = true;
-            this.template.querySelector('.modelSelect').removeAttribute('disabled');
-            this.currentModelList = this.makeMap[this.template.querySelector('.makeSelect').value];
+            modelSelect.removeAttribute('disabled');
+            this.currentModelList = Object.getOwnPropertyNames(this.makeMap[makeSelectVal]);
         } else {
             this.makeSelected = false;
+        }
+    }
+
+    @track
+    currentYearList;
+
+    updateYears() {
+        let makeSelectVal = this.template.querySelector('.makeSelect').value;
+        let modelSelect = this.template.querySelector('.modelSelect');
+        if (modelSelect.value != '') {
+            this.modelSelected = true;
+            this.template.querySelector('.yearSelect').removeAttribute('disabled');
+            this.currentYearList = Object.getOwnPropertyNames(this.makeMap[makeSelectVal][modelSelect.value])
+        } else {
+            this.modelSelected = false;
         }
     }
     
