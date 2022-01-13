@@ -2,15 +2,24 @@ import { api, LightningElement, track } from 'lwc';
 import HYUNDAIELANTRA from '@salesforce/resourceUrl/hyundaiElantra';
 
 export default class VehicleCustomizer extends LightningElement {
+
     vehicleImgUrl = HYUNDAIELANTRA;
-    makeSelected = false;
-    modelSelected = false;
-    optionBarVisible = false;
+
+    //template render variables
+    isMakeSelected = false;
+    isModelSelected = false;
+    isYearSelected = false;
+    isOptionBarVisible = false;
     showAlert = false;
+
+    //dictates what options list to show
     optionBarState = '';
-    selectedColor;
-    selectedCustomizationsList = [];
-    selectedAccessoriesList = [];
+    
+    //variables storing the current values selected
+    selectedMake;
+    selectedModel;
+    selectedYear;
+
     /*
     TODO:
         Create event from choiceNode that contains recordId of customization/accessory chosen and handle it by adding/removing it from related list.c/sldsComboBox
@@ -18,6 +27,8 @@ export default class VehicleCustomizer extends LightningElement {
         Make color option bar a single pick only
         Subtotal component implementation
     */
+
+    //default value to show structure
     @api
     makeMap = {
         Hyundai: {
@@ -25,30 +36,34 @@ export default class VehicleCustomizer extends LightningElement {
                 2020: {
                     Accessories: {
                         Acc1: {
-                            Name: 'acc1',
+                            Name: 'Acc1',
                             ImgUrl: '',
                             Price: '+ $200',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: false
                         },
                         Acc2: {
-                            Name: 'acc2',
+                            Name: 'Acc2',
                             ImgUrl: '',
                             Price: '+ $200',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: false
                         },
                         Acc3: {
-                            Name: 'acc3',
+                            Name: 'Acc3',
                             ImgUrl: '',
                             Price: '+ $200',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: false
                         }
                     },
                     Customizations: {
                         Cust1: {
-                            Name: 'cust1',
+                            Name: 'Cust1',
                             ImgUrl: '',
                             Price: '+ $200',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: false
                         }
                     },
                     Colors: {
@@ -56,33 +71,37 @@ export default class VehicleCustomizer extends LightningElement {
                             Name: 'Red',
                             ImgUrl: '',
                             Price: '+ $20',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: false
                         }
                     }
                 },
                 2021: {
                     Accessories: {
                         Acc1: {
-                            Name: 'acc1',
+                            Name: 'Acc1',
                             ImgUrl: '',
                             Price: '+ $200',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: false
                         }
                     },
                     Customizations: {
                         Cust1: {
-                            Name: 'acc1',
+                            Name: 'Cust1',
                             ImgUrl: '',
                             Price: '+ $200',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: false
                         }
                     },
                     Colors: {
-                        Red: {
+                        Blue: {
                             Name: 'Blue',
                             ImgUrl: '',
                             Price: '+ $20',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: false
                         }
                     }
                 }
@@ -91,38 +110,43 @@ export default class VehicleCustomizer extends LightningElement {
                 2020: {
                     Accessories: {
                         Acc1: {
-                            Name: 'acc1',
+                            Name: 'Acc1',
                             ImgUrl: '',
                             Price: '+ $200',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: true
                         },
                         Acc2: {
-                            Name: 'acc2',
+                            Name: 'Acc2',
                             ImgUrl: '',
                             Price: '+ $200',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: false
                         },
                         Acc3: {
-                            Name: 'acc3',
+                            Name: 'Acc3',
                             ImgUrl: '',
                             Price: '+ $200',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: false
                         }
                     },
                     Customizations: {
                         Cust1: {
-                            Name: 'acc1',
+                            Name: 'Cust1',
                             ImgUrl: '',
                             Price: '+ $200',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: false
                         }
                     },
                     Colors: {
-                        Red: {
+                        Green: {
                             Name: 'Green',
                             ImgUrl: '',
                             Price: '+ $20',
-                            RecordId: ''
+                            RecordId: '',
+                            Selected: false
                         }
                     }
                 }
@@ -136,13 +160,8 @@ export default class VehicleCustomizer extends LightningElement {
             Name: 'acc1',
             ImgUrl: '',
             Price: '+ $200',
-            RecordId: ''
-        },
-        {
-            Name: 'acc2',
-            ImgUrl: '',
-            Price: '+ $200',
-            RecordId: ''
+            RecordId: '',
+            Selected: false
         }
     ]
 
@@ -154,37 +173,39 @@ export default class VehicleCustomizer extends LightningElement {
     }
 
     updateModels() {
-        let makeSelectVal = this.template.querySelector('.makeSelect').value;
+        this.selectedMake = this.template.querySelector('.makeSelect').value;
         let modelSelect = this.template.querySelector('.modelSelect');
-        if (makeSelectVal != '') {
-            this.makeSelected = true;
+        if (this.selectedMake != '') {
+            this.isMakeSelected = true;
             modelSelect.removeAttribute('disabled');
-            this.currentModelList = Object.getOwnPropertyNames(this.makeMap[makeSelectVal]);
+            this.currentModelList = Object.getOwnPropertyNames(this.makeMap[this.selectedMake]);
         } else {
-            this.makeSelected = false;
+            this.isMakeSelected = false;
         }
-        this.optionBarVisible = false;
+        this.isOptionBarVisible = false;
     }
 
     @track
     currentYearList;
 
     updateYears() {
-        let makeSelectVal = this.template.querySelector('.makeSelect').value;
         let modelSelect = this.template.querySelector('.modelSelect');
-        if (modelSelect.value != '') {
-            this.modelSelected = true;
+        this.selectedModel = modelSelect.value;
+        if (this.selectedModel != '') {
+            this.isModelSelected = true;
             this.template.querySelector('.yearSelect').removeAttribute('disabled');
-            this.currentYearList = Object.getOwnPropertyNames(this.makeMap[makeSelectVal][modelSelect.value])
+            this.currentYearList = Object.getOwnPropertyNames(this.makeMap[this.selectedMake][this.selectedModel])
         } else {
-            this.modelSelected = false;
+            this.isModelSelected = false;
         }
-        this.optionBarVisible = false;
+        this.isOptionBarVisible = false;
     }
 
     yearSelected() {
+        this.isYearSelected = true;
+        this.selectedYear = this.template.querySelector('.yearSelect').value;
         this.closeAlert();
-        this.optionBarVisible = false;
+        this.isOptionBarVisible = false;
     }
 
     closeAlert() {
@@ -197,13 +218,13 @@ export default class VehicleCustomizer extends LightningElement {
             return;
         }
 
-        if (this.optionBarVisible) {
+        if (this.isOptionBarVisible) {
             if (this.optionBarState == 'Colors') {
-                this.optionBarVisible = false;
+                this.isOptionBarVisible = false;
                 return;
             }
         } else {
-            this.optionBarVisible = true;
+            this.isOptionBarVisible = true;
         }
 
         this.currentOptionsList = Object.values(this.makeMap[this.template.querySelector('.makeSelect').value]
@@ -218,7 +239,21 @@ export default class VehicleCustomizer extends LightningElement {
         if (this.showAlert) {
             return;
         }
-        this.optionBarVisible = !this.optionBarVisible;
+
+        if (this.isOptionBarVisible) {
+            if (this.optionBarState == 'Customizations') {
+                this.isOptionBarVisible = false;
+                return;
+            }
+        } else {
+            this.isOptionBarVisible = true;
+        }
+
+        this.currentOptionsList = Object.values(this.makeMap[this.template.querySelector('.makeSelect').value]
+            [this.template.querySelector('.modelSelect').value]
+            [this.template.querySelector('.yearSelect').value]
+            ['Customizations']);
+        this.optionBarState = 'Customizations';
     }
 
     updateOptionBarAccessories() {
@@ -226,11 +261,25 @@ export default class VehicleCustomizer extends LightningElement {
         if (this.showAlert) {
             return;
         }
-        this.optionBarVisible = !this.optionBarVisible;
+
+        if (this.isOptionBarVisible) {
+            if (this.optionBarState == 'Accessories') {
+                this.isOptionBarVisible = false;
+                return;
+            }
+        } else {
+            this.isOptionBarVisible = true;
+        }
+
+        this.currentOptionsList = Object.values(this.makeMap[this.template.querySelector('.makeSelect').value]
+            [this.template.querySelector('.modelSelect').value]
+            [this.template.querySelector('.yearSelect').value]
+            ['Accessories']);
+        this.optionBarState = 'Accessories';
     }
 
     alertCheck() {
-        if (this.makeSelected && this.modelSelected && this.template.querySelector('.yearSelect').value != '') {
+        if (this.isMakeSelected && this.isModelSelected && this.isYearSelected) {
             this.showAlert = false;
         } else {
             this.showAlert = true;

@@ -30,7 +30,7 @@
                 <label><b>Model: </b></label>
                 <select name='Models' class='modelSelect' disabled onchange={updateYears}>
                     <option value='' disabled selected>Select Vehicle Model</option>
-                    <template if:true={makeSelected}>
+                    <template if:true={isMakeSelected}>
                         <template for:each={currentModelList} for:item="model">
                             <option key={model}>{model}</option>
                         </template>
@@ -41,7 +41,7 @@
                 <label><b>Year: </b></label>
                 <select name='Years' class='yearSelect' disabled onchange={yearSelected}>
                     <option value='' disabled selected>Select Vehicle Year</option>
-                    <template if:true={modelSelected}>
+                    <template if:true={isModelSelected}>
                         <template for:each={currentYearList} for:item="year">
                             <option key={year}>{year}</option>
                         </template>
@@ -56,7 +56,7 @@
         </div>
         <div class='vehicleAndChoicesContainer'>
             <img src={vehicleImgUrl} class='vehicleImg'>
-            <template if:true={optionBarVisible}>
+            <template if:true={isOptionBarVisible}>
                 <div class='choicesBottomBar'>
                     <h1 class='choicesBottomBarHeader'><b>Options: </b></h1>
                     <div class='choiceNodesContainer'>
