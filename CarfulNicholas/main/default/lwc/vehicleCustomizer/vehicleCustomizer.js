@@ -27,7 +27,6 @@ export default class VehicleCustomizer extends LightningElement {
 
     /*
     TODO:
-        Create event from choiceNode that contains recordId of customization/accessory chosen and handle it by adding/removing it from related list.c/sldsComboBox
         Clear accessories/customizations list on change of make/model/year
         Make color option bar a single pick only
         Subtotal component implementation
@@ -217,6 +216,10 @@ export default class VehicleCustomizer extends LightningElement {
         this.showAlert = false;
     }
 
+    updateOptionBar() {
+        this.currentOptionsList = Object.values(this.makeMap[this.selectedMake][this.selectedModel][this.selectedYear][this.optionBarState]);
+    }
+
     updateOptionBarColors() {
         this.alertCheck();
         if (this.showAlert) {
@@ -232,11 +235,8 @@ export default class VehicleCustomizer extends LightningElement {
             this.isOptionBarVisible = true;
         }
 
-        this.currentOptionsList = Object.values(this.makeMap[this.template.querySelector('.makeSelect').value]
-            [this.template.querySelector('.modelSelect').value]
-            [this.template.querySelector('.yearSelect').value]
-            [this.optionBarStateEnums.Colors]);
         this.optionBarState = this.optionBarStateEnums.Colors;
+        this.updateOptionBar();
     }
 
     updateOptionBarCustomizations() {
@@ -254,11 +254,8 @@ export default class VehicleCustomizer extends LightningElement {
             this.isOptionBarVisible = true;
         }
 
-        this.currentOptionsList = Object.values(this.makeMap[this.template.querySelector('.makeSelect').value]
-            [this.template.querySelector('.modelSelect').value]
-            [this.template.querySelector('.yearSelect').value]
-            [this.optionBarStateEnums.Customizations]);
         this.optionBarState = this.optionBarStateEnums.Customizations;
+        this.updateOptionBar();
     }
 
     updateOptionBarAccessories() {
@@ -276,11 +273,8 @@ export default class VehicleCustomizer extends LightningElement {
             this.isOptionBarVisible = true;
         }
 
-        this.currentOptionsList = Object.values(this.makeMap[this.template.querySelector('.makeSelect').value]
-            [this.template.querySelector('.modelSelect').value]
-            [this.template.querySelector('.yearSelect').value]
-            [this.optionBarStateEnums.Accessories]);
         this.optionBarState = this.optionBarStateEnums.Accessories;
+        this.updateOptionBar();
     }
 
     alertCheck() {
@@ -293,5 +287,11 @@ export default class VehicleCustomizer extends LightningElement {
 
     submitOrder() {
         this.alertCheck();
+    }
+
+    handleNodeClicked(event) {
+        let selectedProperty = this.makeMap[this.selectedMake][this.selectedModel][this.selectedYear][this.optionBarState][event.detail]['Selected'];
+        this.makeMap[this.selectedMake][this.selectedModel][this.selectedYear][this.optionBarState][event.detail]['Selected'] = !selectedProperty;
+        this.updateOptionBar();
     }
 }

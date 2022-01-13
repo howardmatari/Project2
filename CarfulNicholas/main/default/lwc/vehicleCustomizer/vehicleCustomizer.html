@@ -59,9 +59,9 @@
             <template if:true={isOptionBarVisible}>
                 <div class='choicesBottomBar'>
                     <h1 class='choicesBottomBarHeader'><b>Options: </b></h1>
-                    <div class='choiceNodesContainer'>
+                    <div class='choiceNodesContainer' onchoicenodeclicked={handleNodeClicked}>
                         <template for:each={currentOptionsList} for:item='choice'>
-                            <c-choice-node key={choice.Name} choice-name={choice.Name} choice-price={choice.Price} selected-bool={choice.Selected} record-id={choice.RecordId}></c-choice-node>
+                            <c-choice-node key={choice.Name} choice-name={choice.Name} choice-price={choice.Price} selected-bool={choice.Selected}></c-choice-node>
                         </template>
                     </div>
                 </div>
