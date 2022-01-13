@@ -14,6 +14,11 @@ export default class VehicleCustomizer extends LightningElement {
 
     //dictates what options list to show
     optionBarState = '';
+    optionBarStateEnums = {
+        Colors: 'Colors',
+        Accessories: 'Accessories',
+        Customizations: 'Customizations'
+    }
     
     //variables storing the current values selected
     selectedMake;
@@ -114,7 +119,7 @@ export default class VehicleCustomizer extends LightningElement {
                             ImgUrl: '',
                             Price: '+ $200',
                             RecordId: '',
-                            Selected: true
+                            Selected: false
                         },
                         Acc2: {
                             Name: 'Acc2',
@@ -219,7 +224,7 @@ export default class VehicleCustomizer extends LightningElement {
         }
 
         if (this.isOptionBarVisible) {
-            if (this.optionBarState == 'Colors') {
+            if (this.optionBarState == this.optionBarStateEnums.Colors) {
                 this.isOptionBarVisible = false;
                 return;
             }
@@ -230,8 +235,8 @@ export default class VehicleCustomizer extends LightningElement {
         this.currentOptionsList = Object.values(this.makeMap[this.template.querySelector('.makeSelect').value]
             [this.template.querySelector('.modelSelect').value]
             [this.template.querySelector('.yearSelect').value]
-            ['Colors']);
-        this.optionBarState = 'Colors';
+            [this.optionBarStateEnums.Colors]);
+        this.optionBarState = this.optionBarStateEnums.Colors;
     }
 
     updateOptionBarCustomizations() {
@@ -241,7 +246,7 @@ export default class VehicleCustomizer extends LightningElement {
         }
 
         if (this.isOptionBarVisible) {
-            if (this.optionBarState == 'Customizations') {
+            if (this.optionBarState == this.optionBarStateEnums.Customizations) {
                 this.isOptionBarVisible = false;
                 return;
             }
@@ -252,8 +257,8 @@ export default class VehicleCustomizer extends LightningElement {
         this.currentOptionsList = Object.values(this.makeMap[this.template.querySelector('.makeSelect').value]
             [this.template.querySelector('.modelSelect').value]
             [this.template.querySelector('.yearSelect').value]
-            ['Customizations']);
-        this.optionBarState = 'Customizations';
+            [this.optionBarStateEnums.Customizations]);
+        this.optionBarState = this.optionBarStateEnums.Customizations;
     }
 
     updateOptionBarAccessories() {
@@ -263,7 +268,7 @@ export default class VehicleCustomizer extends LightningElement {
         }
 
         if (this.isOptionBarVisible) {
-            if (this.optionBarState == 'Accessories') {
+            if (this.optionBarState == this.optionBarStateEnums.Accessories) {
                 this.isOptionBarVisible = false;
                 return;
             }
@@ -274,8 +279,8 @@ export default class VehicleCustomizer extends LightningElement {
         this.currentOptionsList = Object.values(this.makeMap[this.template.querySelector('.makeSelect').value]
             [this.template.querySelector('.modelSelect').value]
             [this.template.querySelector('.yearSelect').value]
-            ['Accessories']);
-        this.optionBarState = 'Accessories';
+            [this.optionBarStateEnums.Accessories]);
+        this.optionBarState = this.optionBarStateEnums.Accessories;
     }
 
     alertCheck() {
