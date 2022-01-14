@@ -7,7 +7,7 @@ export default class ChoiceNode extends LightningElement {
     @api
     choiceName = 'defaultName';
     @api
-    choicePrice = '+ $200';
+    choicePrice = '200';
 
     @api
     selectedBool = false;
@@ -15,6 +15,9 @@ export default class ChoiceNode extends LightningElement {
     renderedCallback() {
         if (this.selectedBool) {
             this.template.querySelector('.container').classList.add('selected');
+        } else {
+            this.template.querySelector('.container').classList.remove('selected');
+            console.log('hai');
         }
     }
 
