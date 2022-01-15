@@ -11,6 +11,7 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
+        
             <objects>
                 <object>Accessory__c</object>
             </objects>

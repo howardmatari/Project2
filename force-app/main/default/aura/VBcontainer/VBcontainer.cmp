@@ -1,3 +1,19 @@
-<aura:component>
+<aura:component controller="VBcontainerController" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+<aura:attribute name="recordId" type="Id" />
+<aura:attribute name="Make" type="Make" />
+<aura:attribute name="Model" type="Model" />
+<aura:attribute name="Year" type="Year" />
+<aura:attribute name="Columns" type="List" />
+<aura:handler name="init" value="{!this}" action="{!c.myAction}" />
 
-</aura:component>	
+<force:recordData aura:id="makeRecord"
+                  recordId="{!v.recordId}"
+                  targetFields="{!v.Make}"
+                  layoutType="FULL"
+                  />
+<lightning:card iconName="standard:vehicle" title="{! 'Vehicle List for ' + v.Make.Name}">
+    <!-- Vehicle list goes here -->
+</lightning:card>
+
+	
+</aura:component>
