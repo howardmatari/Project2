@@ -17,6 +17,4 @@
     <!--<lightning:datatable data="{! v.make }" columns="{! v.Columns }" keyField="Id" hideCheckboxColumn="true"/>-->
 
 </lightning:card>
-
-	
 </aura:component>
