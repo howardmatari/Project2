@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accessory__c</fullName>
+    <description>The accessory that this accessory application describes.</description>
+    <externalId>false</externalId>
+    <label>Accessory</label>
+    <referenceTo>Accessory__c</referenceTo>
+    <relationshipLabel>Accessory Applications</relationshipLabel>
+    <relationshipName>Accessory_Applications</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

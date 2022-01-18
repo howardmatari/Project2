@@ -1,7 +1,7 @@
 <template>
-    <div class=container>
+    <div class=container onclick={nodeClicked}>
         <img src={imgUrl}>
         <p><b>{choiceName}</b></p>
-        <p>{choicePrice}</p>
+        <p>+ ${choicePrice}</p>
     </div>
 </template>
