@@ -1,0 +1,4 @@
+<aura:component controller='vehicleBuilderContainerController' implements='flexipage:availableForAllPageTypes' access='global'>
+    <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
+    <c:vehicleCustomizer></c:vehicleCustomizer>
+</aura:component>	
